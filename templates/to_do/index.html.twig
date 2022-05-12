@@ -1,0 +1,23 @@
+{% extends 'template.html.twig' %}
+
+{% block title%} todo{% endblock %}
+
+{% block body %}
+{%block pageTitle%}liste des todos {%endblock%}
+{% for message in app.session.flashBag.get('info') %}
+<div class="alert alert-info">{{message}}</div>
+{% endfor  %}
+{% for message in app.session.flashBag.get('success') %}
+    <div class="alert alert-success">{{message}}</div>
+{% endfor  %}
+{% for message in app.session.flashBag.get('error') %}
+    <div class="alert alert-danger">{{message}}</div>
+{% endfor  %}
+<ol class="list-group">
+    {% for name ,content in app.session.get('todos') %}
+    <li class="list-group-item">
+        {{name }} : {{content}}
+    </li>
+    {% endfor %}
+</ol>
+{%endblock%}
